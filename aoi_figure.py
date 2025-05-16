@@ -8,12 +8,16 @@ Created on Thu May 15 12:17:38 2025
 
 import pygmt
 
-#def make_aoi_map(feature_path):
+
+def make_aoi_map(feature, point=False):
     
 x = [25.732335783844334, 25.92890398843026, 27.376314075981746, 27.14416308185329, 25.732335783844334]
 y = [67.11374187687282, 67.71396519054159, 67.63897836500453, 67.03867287399272, 67.11374187687282]
 
-point = (26.5900744, 67.4189270)
+
+
+
+
 
 # Set the region of the main figure
 region = [23, 30, 65, 69]
@@ -26,9 +30,11 @@ fig = pygmt.Figure()
 # fig.grdimage(grid=grid, frame="a", cmap="geo")
 fig.coast(region=region, projection="M10c", land="lightgray", water="lightblue", borders="1/0.5p", shorelines="1/0.5p", frame="ag")
 
-font = "11p,Helvetica-Bold"
-fig.plot(x=point[0], y=point[1], style="a0.2c", pen="1.5p,gray40")
-fig.text(x=point[0]+0.7, y=point[1] + 0.1, text="Sodankylä", font=font)
+if point:
+    # point = (26.5900744, 67.4189270)
+    font = "11p,Helvetica-Bold"
+    fig.plot(x=point[0], y=point[1], style="a0.2c", pen="1.5p,gray40")
+    fig.text(x=point[0]+0.7, y=point[1] + 0.1, text="Sodankylä", font=font)
 
 
 with fig.inset(position="jTR+w4c+o0.1c", margin=0, box="+p1p,black"):
