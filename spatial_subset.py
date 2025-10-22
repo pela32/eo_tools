@@ -6,11 +6,8 @@ Created on Thu Jan 16 14:38:59 2025
 @author: pelagia
 """
 
-import os
-import glob
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
-from gdal_tools import raster2array
 
 
 
