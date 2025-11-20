@@ -52,7 +52,7 @@ def raster2array(file, bands=None):
 
 
 
-def array2raster(newRasterfn, array, dtype, ref_img=None, prj=None, geotransform=None):
+def array2raster(newRasterfn, array, dtype, ref_img=None, prj=None, geotransform=None, nformat='GTiff'):
     # save GTiff file from numpy.array
     
     # --- Input ---
@@ -91,7 +91,7 @@ def array2raster(newRasterfn, array, dtype, ref_img=None, prj=None, geotransform
     print(f'Image dimensions: rows: {rows}, columns: {cols}, bands: {nbands}')
     
     # set format
-    driver = gdal.GetDriverByName('GTiff')
+    driver = gdal.GetDriverByName(nformat)
     
     # set data type to save
     GDT_dtype = gdal.GDT_Unknown
@@ -99,6 +99,8 @@ def array2raster(newRasterfn, array, dtype, ref_img=None, prj=None, geotransform
         GDT_dtype = gdal.GDT_Byte
     elif dtype == "Float32":
         GDT_dtype = gdal.GDT_Float32
+    elif dtype == "Int16":
+        GDT_dtype = gdal.GDT_Int16 
     else:
         print("Not supported data type.")
     
